@@ -9,7 +9,7 @@ if(Meteor.isClient) {
 		}
 		
 		var list = JSON.parse(Session.get("newList"));
-		list.push({word : eng, mean : kor});
+		list.push({eng : eng, kor : kor});
 		Session.set("newList", JSON.stringify(list))
 		
 		$(".inputWrapper").hide();

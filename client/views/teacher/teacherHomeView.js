@@ -1,11 +1,8 @@
 
 if(Meteor.isClient) {
 	Template.teacherHomeView.onRendered(function () {
-		if(Session.equals("userType", "noType")) {
+		if(Session.equals("userType", "noType") || Session.equals("userType", "student")) {
 			Router.go("/");
-		}
-		else if(Session.equals("userId", null)) {
-			Router.go("/teacher");
 		}
 		
 		Meteor.call("getLastListDate", function (err, res) {
@@ -56,6 +53,16 @@ if(Meteor.isClient) {
 					}
 				}
 			});
+		},
+		
+		"click #logoutBtn" : function () {
+			Meteor.logout(function (err) {
+				if(err) {
+					alert("로그 아웃 중 문제가 발생했습니다.");
+				}
+			});
+			Session.set("userType", "noType");
+			Router.go("/");
 		}
 	});
 }

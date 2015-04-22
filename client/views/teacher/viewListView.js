@@ -18,7 +18,13 @@ if(Meteor.isClient) {
 		
 		"click .listItem" : function (evt) {
 			Session.set("selectedList", evt.currentTarget.id);
-			Router.go("/teacher/viewList?list=" + evt.currentTarget.id);
+			
+			if(Session.equals("userType", "teacher")) {
+				Router.go("/teacher/viewList?list=" + evt.currentTarget.id);
+			}
+			else {
+				Router.go("/student/viewList?list=" + evt.currentTarget.id);
+			}
 		}
 	});
 }

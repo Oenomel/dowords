@@ -7,10 +7,12 @@ if(Meteor.isClient) {
 			}
 			else {
 				Session.set("listDate", dateToString(res[0].timeStamp));
+				
 				var memo = res[0].memo;
 				if(memo.length === 0) {
 					memo = "---";
 				}
+				
 				Session.set("listMemo", memo);
 				Session.set("words", JSON.stringify(res[0].words));
 			}

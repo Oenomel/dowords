@@ -9,30 +9,31 @@ Router.route('/', function () {
 		this.redirect("/teacher");
 	}
 	else if(userType === "student") {
-		Session.set("guestName", "");
 		this.redirect("/student");
 	}
 });
 
 Router.route("/teacher", function () {
 	var userId = Session.get("userId");
+	var userType = Session.get("userType");
 	
-	if(userId.length !== 0) {
+	if(userId.length !== 0 || userType !== "teacher") {
 		this.render("teacherHomeView");
 	}
 	else {
-		this.render("teacherLoginView");
+		this.render("initView");
 	}
 });
 
 Router.route("/student", function () {
-	var guestName = Session.get("guestName");
+	var userId = Session.get("userId");
+	var userType = Session.get("userType");
 	
-	if(guestName == null || guestName.length === 0) {
-		this.render("studentInputInfoView");
+	if(userId.length !== 0 || userType !== "student") {
+		this.render("studentHomeView");
 	}
 	else {
-		this.render("studentDoPrarcticeView");
+		this.render("initView");
 	}
 });
 
@@ -49,5 +50,13 @@ Router.route("/teacher/viewList", function () {
 });
 
 Router.route("/teacher/doPractice", function () {
-	this.render("doPracticeView");
+	var userId = Session.get("userId");
+	var userType = Session.get("userType");
+	
+	if(userId.length !== 0 || userType !== "student") {
+		this.render("teacher_doPracticeView");
+	}
+	else {
+		this.render("initView");
+	}
 });

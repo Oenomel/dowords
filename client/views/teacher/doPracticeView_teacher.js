@@ -1,6 +1,6 @@
 
 if(Meteor.isClient) {	
-	Template.doPracticeView.onRendered(function () {
+	Template.teacher_doPracticeView.onRendered(function () {
 		Session.set("cursor", 0);
 		Meteor.call("getListLength", Session.get("selectedList"), function (err, res) {
 			if(err) {
@@ -14,7 +14,7 @@ if(Meteor.isClient) {
 		});
 	});
 	
-	Template.doPracticeView.helpers({
+	Template.teacher_doPracticeView.helpers({
 		word : function () {
 			return Session.get("word");
 		},
@@ -32,7 +32,7 @@ if(Meteor.isClient) {
 		}
 	});
 	
-	Template.doPracticeView.events({		
+	Template.teacher_doPracticeView.events({		
 		"click #prevBtn" : function () {
 			if(Session.equals("cursor", 0)) {
 				return;

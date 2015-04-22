@@ -1,17 +1,18 @@
 
 <template name="initView">
-	<div id="userTypeCont">
-		<div id="teacherUser" class="bigBtn">
-			<div>
-				<span>Teacher</span>
-				<img src="/images/teacher4.png">
+	<div class="listWrapper">
+		<div class="loginContainer">
+			<div class="loginWrapper">
+				<input type="text" name="memberId" placeholder="Enter your ID">
+			</div>
+			<div class="loginWrapper">
+				<input type="password" name="memberPw" placeholder="Enter your PW">
 			</div>
 		</div>
-		<div id="studentUser" class="bigBtn">
-			<div>
-				<span>Student</span>
-				<img src="/images/kids1.png">
-			</div>
+		<div class="listBtnContainer">
+			<div class="listBtn" id="loginBtn">Log in</div>
+			<hr>
+			<div class="listBtn" id="backBtn">Back</div>
 		</div>
 	</div>
 </template>

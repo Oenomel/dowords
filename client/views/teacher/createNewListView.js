@@ -3,11 +3,8 @@ if(Meteor.isClient) {
 	Session.set("newList", "[]");
 	
 	Template.createNewListView.onRendered(function () {
-		if(Session.equals("userType", "noType")) {
+		if(Session.equals("userType", "noType") || Session.equals("userType", "student")) {
 			Router.go("/");
-		}
-		else if(Session.equals("userId", null)) {
-			Router.go("/teacher");
 		}
 		
 		$(".inputWrapper").hide();
@@ -33,7 +30,7 @@ if(Meteor.isClient) {
 			
 			if(list != null) {
 				var arr = JSON.parse(list);
-				if(arr.length === 0 || arr[0].word == null || arr[0].mean == null) {
+				if(arr.length === 0 || arr[0].eng == null || arr[0].kor == null) {
 					alert("단어를 등록해 주세요!");
 					return;
 				}

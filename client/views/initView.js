@@ -1,15 +1,23 @@
 
 if(Meteor.isClient) {
+	Template.initView.onRendered(function () {
+		resetSession();
+	})
 	
 	Template.initView.events({
-		"click #teacherUser span, click #teacherUser img" : function () {
-			Session.set("userType", "teacher");
-			Router.go("/teacher");
+		"click #loginBtn" : function () {
+			loginFunction();
 		},
 		
-		"click #studentUser span, click #studentUser img" : function () {
-			Session.set("userType", "student");
-			Router.go("/student");
+		"keydown [name='memberPw']" : function (evt) {
+			if(evt.keyCode === 13) {
+				loginFunction();
+			}
+		},
+		
+		"click #backBtn" : function () {
+			Session.set("userType", "noType");
+			Router.go("/");
 		}
 	});
 }

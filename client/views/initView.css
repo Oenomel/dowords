@@ -53,4 +53,21 @@
 		margin : 0 auto;
 		padding-top : 150px;
 	}
+	
+	.loginContainer {
+		padding : 400px 0;
+	}
+
+	.loginContainer input {
+		margin : 30px auto;
+		width : 50%;
+		border : 0;
+		border-bottom : 1px solid #000;
+		padding-left : 40px;
+		font-size : 40px;
+	}
+	
+	.loginContainer input:focus {
+		outline : none;
+	}
 }

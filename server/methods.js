@@ -1,18 +1,21 @@
 
 if(Meteor.isServer) {
 	Meteor.methods({
-		loginMethod : function (id, pw) {
-			var admin = Members.find({id : id});
+		checkUserAuth : function (userType) {
+			var user = Users.findOne({username : username});
+			var type = user.profile.userType;
 			
-			if(admin.count() === 0) {
-				return -1;
-			}
-			else if(admin.fetch()[0].pw !== pw) {
-				return 0;
+			if(type === userType) {
+				return true;
 			}
 			else {
-				return id;
+				return false;
 			}
+		},
+		
+		checkUserType : function (username) {
+			var user = Users.findOne({username : username});
+			return {userType : user.profile.userType, name : user.profile.name};
 		},
 		
 		insertNewList : function (memo, listData) {
@@ -67,9 +70,9 @@ if(Meteor.isServer) {
 				var getId = viewWord.fetch()[0]
 				ViewWord.remove({_id : getId._id});
 			}
-			ViewWord.insert({word : words[0].word, mean : words[0].mean, status : "start"});
+			ViewWord.insert({eng : words[0].eng, kor : words[0].kor, status : "start"});
 			
-			return {len : words.length, word : words[0].word, mean : words[0].mean};
+			return {len : words.length, eng : words[0].eng, kor : words[0].kor};
 		},
 		
 		viewAnotherWord : function (seletectedId, index) {
@@ -77,9 +80,9 @@ if(Meteor.isServer) {
 			var words = JSON.parse(list[0].words);
 			var id = ViewWord.findOne()._id;
 		
-			ViewWord.update({_id : id}, {$set : {word : words[index].word, mean : words[index].mean, status : "doing"}});
+			ViewWord.update({_id : id}, {$set : {eng : words[index].eng, kor : words[index].kor, status : "doing"}});
 		
-			return {word : words[index].word, mean : words[index].mean};
+			return {eng : words[index].eng, kor : words[index].kor};
 		},
 		
 		readyToPractice : function () {

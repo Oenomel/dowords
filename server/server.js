@@ -1,8 +1,32 @@
 
 if(Meteor.isServer) {
 	Meteor.startup(function() {
-		if(Members.find().count() === 0) {
-			Members.insert({id : "admin", pw : "admin", type : "teacher", useYn : "y"});
+		if(Users.find().count() === 0) {
+			Accounts.createUser({
+				username : "admin",
+				eamail : "",
+				password : "admin",
+				profile : {
+					userType : "teacher",
+					grade : 6,
+					class : 1,
+					name : "ADMIN"
+				}
+			});
+			
+			Accounts.createUser({
+				username : "stu1",
+				eamail : "",
+				password : "stu1",
+				profile : {
+					userType : "student",
+					grade : 6,
+					class : 1,
+					name : "stu1"
+				}
+			});
+			
+			console.log("create admin");
 		}
 		
 		if(ViewWord.find().count() !== 0) {
