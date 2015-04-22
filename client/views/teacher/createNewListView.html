@@ -1,0 +1,32 @@
+
+<template name="createNewListView">
+	<div class="listWrapper">
+		<div class="createInputContainer">
+			<input type="text" name="listMemo" placeholder="리스트 메모를 입력하세요."/>
+			<div class="insertWordBtn">Insert a new word</div>
+		</div>
+		<div class="createistContainer">
+			<div class="wordListContainer"></div>
+		</div>
+		
+		<div class="listBtnContainer">
+			<div class="listBtn" id="submitListBtn">완료</div>
+			<hr>
+			<div class="listBtn" id="cancelListBtn">취소</div>
+		</div>
+	</div>
+	
+	<div class="inputWrapper">
+		<div class="inputContainer">
+			<div class="inputDiv">
+				<input type="text" class="inputWord" name="inputEng" placeholder="English"/>
+				<input type="text" class="inputWord" name="inputKor" placeholder="Korean"/>
+			</div>
+			<div class="inputBtnContainer">
+				<div class="inputBtn" id="addWordBtn">등록하기</div>
+				<hr>
+				<div class="inputBtn" id="cancelWordBtn">취소하기</div>
+			</div>
+		</div>
+	</div>
+</template>

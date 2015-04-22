@@ -1,0 +1,8 @@
+
+if(Meteor.isClient) {
+
+	Meteor.startup(function () {
+		Session.setDefault("userType", "noType");
+		Session.setDefault("userId", "");
+	});
+}

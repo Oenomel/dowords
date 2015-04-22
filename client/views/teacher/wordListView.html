@@ -1,0 +1,20 @@
+
+<template name="wordListView">
+	<div class="listWrapper">
+		<div class="listHeader">
+			<span class="leftSpan">{{listDate}}</span> <span>{{listMemo}}</span>
+		</div>
+		<div class="wordListContainer">
+			{{#each words}}
+			<div class="wordContainer">
+				<div>{{word}}</div> <div>{{mean}}</div>
+			</div>
+			{{/each}}
+		</div>
+		<div class="listBtnContainer">
+			<div class="listBtn" id="backBtn">돌아가기</div>
+			<hr>
+			<div class="listBtn" id="doBtn">학습시작</div>
+		</div>
+	</div>
+</template>
