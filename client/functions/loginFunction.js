@@ -3,7 +3,7 @@ if(Meteor.isClient) {
 	loginFunction = function () {
 		var id = $("input[name='memberId']").val();
 		var pw = $("input[name='memberPw']").val();		
-		var user = {username : id}
+		var user = {username : id.toLowerCase()}
 		
 		Meteor.loginWithPassword(user, pw, function (err) {		
 			if(!err) {
@@ -18,7 +18,7 @@ if(Meteor.isClient) {
 	}
 	
 	checkUserType = function (id) {
-		Meteor.call("checkUserType", id, function (err, res) {
+		Meteor.call("checkUserType", id.toLowerCase(), function (err, res) {
 			if(err) {
 				alert("Error 011");
 				return;
