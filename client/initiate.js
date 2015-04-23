@@ -5,4 +5,6 @@ if(Meteor.isClient) {
 		Session.setDefault("userType", "noType");
 		Session.setDefault("userId", "");
 	});
+	
+	Meteor.subscribe("viewWord");
 }

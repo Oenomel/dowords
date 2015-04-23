@@ -13,11 +13,6 @@ if(Meteor.isClient) {
 			if(evt.keyCode === 13) {
 				loginFunction();
 			}
-		},
-		
-		"click #backBtn" : function () {
-			Session.set("userType", "noType");
-			Router.go("/");
 		}
 	});
 }

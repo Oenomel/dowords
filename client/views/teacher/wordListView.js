@@ -1,6 +1,10 @@
 
 if(Meteor.isClient) {
 	Template.wordListView.onRendered(function () {
+		if(Session.equals("userType", "noType") || Session.equals("userType", "student")) {
+			Router.go("/");
+		}
+		
 		Meteor.call("getWordList", Session.get("selectedList"), function (err, res) {
 			if(err) {
 				alert("Error 005");
@@ -46,7 +50,7 @@ if(Meteor.isClient) {
 				return;
 			}
 			
-			Router.go("/teacher/viewList");
+			Router.go("/viewList");
 		},
 		
 		"click #doBtn" : function () {

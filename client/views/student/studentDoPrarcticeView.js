@@ -1,7 +1,5 @@
 
 if(Meteor.isClient) {
-
-	Meteor.subscribe("viewWord");	
 	
 	Template.studentDoPrarcticeView.onRendered(function () {
 		if(Session.equals("userType", "noType") || Session.get("guestName") == null) {

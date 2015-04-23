@@ -34,7 +34,7 @@ if(Meteor.isClient) {
 		},
 		
 		"click #viewListBtn" : function () {
-			Router.go("/teacher/viewList");
+			Router.go("/viewList");
 		},
 		
 		"click #lastListDateBtn" : function () {
@@ -46,7 +46,7 @@ if(Meteor.isClient) {
 					if(res) {
 						Session.set("fromHome", true);
 						Session.set("selectedList", res[0]._id);
-						Router.go("/teacher/viewList?list=" + res[0]._id);
+						Router.go("/viewList?list=" + res[0]._id);
 					}
 					else {
 						return;

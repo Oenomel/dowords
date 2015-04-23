@@ -41,9 +41,14 @@ Router.route("/teacher/newList", function () {
 	this.render("createNewListView");
 });
 
-Router.route("/teacher/viewList", function () {
+Router.route("/viewList", function () {
 	if(this.params.query.list != null && this.params.query.list.length > 0) {
-		this.render("wordListView");
+		if(Session.equals("userType", "teacher")) {
+			this.render("wordListView");
+		}
+		else {
+			this.render("student_doPracticeView");
+		}
 		return;
 	}
 	this.render("viewListView");
