@@ -8,19 +8,19 @@ if(Meteor.isClient) {
 			}
 			else {
 				Session.set("listLength", res.len);
-				Session.set("word", res.word);
-				Session.set("mean", res.mean);
+				Session.set("eng", res.eng);
+				Session.set("kor", res.kor);
 			}
 		});
 	});
 	
 	Template.teacher_doPracticeView.helpers({
 		word : function () {
-			return Session.get("word");
+			return Session.get("eng");
 		},
 		
 		mean : function () {
-			return Session.get("mean");
+			return Session.get("kor");
 		},
 		
 		cursor : function () {
@@ -43,8 +43,8 @@ if(Meteor.isClient) {
 				}
 				else {
 					Session.set("cursor", Session.get("cursor") - 1);
-					Session.set("word", res.word);
-					Session.set("mean", res.mean);
+					Session.set("eng", res.eng);
+					Session.set("kor", res.kor);
 				}
 			});
 		},
@@ -55,7 +55,7 @@ if(Meteor.isClient) {
 				
 				if(sel) {
 					ViewWord.update({_id : ViewWord.findOne()._id}, {$set : {status : "finish"}});
-					Router.go("/teacher/viewList?list=" + Session.get("selectedList"));
+					Router.go("/viewList?list=" + Session.get("selectedList"));
 				}
 				return;
 			}
@@ -67,8 +67,8 @@ if(Meteor.isClient) {
 				else {
 					if(res) {
 						Session.set("cursor", Session.get("cursor") + 1);
-						Session.set("word", res.word);
-						Session.set("mean", res.mean);
+						Session.set("eng", res.eng);
+						Session.set("kor", res.kor);
 					}	
 				}
 			});

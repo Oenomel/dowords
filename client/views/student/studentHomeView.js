@@ -1,10 +1,38 @@
 
 if(Meteor.isClient) {
-	Template.teacherHomeView.onRendered(function () {
+	
+	Template.studentHomeView.onRendered(function () {
 		if(Session.equals("userType", "noType") || Session.equals("userType", "teacher")) {
 			Router.go("/");
 		}
-		Session.set("ready", false);
+		
+		Session.set("isReady", "준비중 입니다.");
+		
+		Meteor.call("readyToPractice", function (err, res) {
+			if(err) {
+				alert("Error 012");
+			}
+			else {
+				if(res) {
+					Session.set("isReady", "학습을 시작합니다.");
+				}
+				else {
+					Session.set("isReady", "준비중 입니다.");
+				}
+			}
+		});
+
+		var cursor = ViewWord.find();
+		var handler = cursor.observeChanges({
+			changed : function (id, word) {
+				if(word.status === "finish") {
+					Session.set("isReady", "준비중 입니다.");
+				}
+				else {
+					Session.set("isReady", "학습을 시작합니다.");
+				}
+			}
+		});
 	});
 	
 	Template.studentHomeView.helpers({
@@ -12,23 +40,26 @@ if(Meteor.isClient) {
 			return Session.get("name");
 		},
 		
-		status : function () {
-			var view = ViewWord.findOne();
-			
-			if(view.status != null && view.status === "finish") {
-				return "gray";
+		practiceStatus : function () {
+			if(Session.equals("isReady", "학습을 시작합니다.")) {
+				$("#startPracticeBtn").css("color", "blue");
 			}
 			else {
-				Session.set("ready", true);
-				return "black";
+				$("#startPracticeBtn").css("color", "red");
 			}
+			return Session.get("isReady");
 		}
 	});
 	
 	Template.studentHomeView.events({
 		"click #startPracticeBtn" : function () {
-			if(Session.equals("ready", true)) {
-				confirm("학습을 시작 하시겠습니까?");
+			if(Session.equals("isReady", "학습을 시작합니다.")) {
+				if(confirm("학습을 시작 하시겠습니까?")) {
+					
+				}
+				else {
+					
+				}
 			}
 			else {
 				alert("잠시 기다려 주세요~!");

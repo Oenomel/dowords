@@ -32,6 +32,9 @@ if(Meteor.isServer) {
 		if(ViewWord.find().count() !== 0) {
 			ViewWord.update({_id : ViewWord.findOne()._id}, {$set : {status : "finish"}});
 		}
+		else {
+			ViewWord.insert({eng : "", kor : "", status : "finish"});
+		}
 		
 		Meteor.publish("viewWord", function () {
 			return ViewWord.find();

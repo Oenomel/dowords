@@ -2,7 +2,7 @@
 if(Meteor.isClient) {
 	
 	Template.studentDoPrarcticeView.onRendered(function () {
-		if(Session.equals("userType", "noType") || Session.get("guestName") == null) {
+		if(Session.get("userType") !== "student" || Session.get("userId").length === 0) {
 			Router.go("/");
 		}
 	});
@@ -12,7 +12,7 @@ if(Meteor.isClient) {
 			var cont = [];
 			var view = ViewWord.findOne();
 			
-			if(view.status != null && view.status === "finish") {
+			if(view.status == null && view.status === "finish") {
 				cont.push({word : "잠시만 기다려 주세요", mean : ""});
 			}
 			else {

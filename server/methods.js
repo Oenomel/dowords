@@ -64,13 +64,10 @@ if(Meteor.isServer) {
 		getListLength : function (_id) {
 			var list = Lists.find({_id : _id}).fetch();		
 			var words = JSON.parse(list[0].words);
-			var viewWord = ViewWord.find();
+			var viewWord = ViewWord.find();			
+			var getId = viewWord.fetch()[0]
 			
-			if(viewWord.count() !== 0) {
-				var getId = viewWord.fetch()[0]
-				ViewWord.remove({_id : getId._id});
-			}
-			ViewWord.insert({eng : words[0].eng, kor : words[0].kor, status : "start"});
+			ViewWord.update({_id : getId._id}, {eng : words[0].eng, kor : words[0].kor, status : "doing"});
 			
 			return {len : words.length, eng : words[0].eng, kor : words[0].kor};
 		},
@@ -80,13 +77,23 @@ if(Meteor.isServer) {
 			var words = JSON.parse(list[0].words);
 			var id = ViewWord.findOne()._id;
 		
-			ViewWord.update({_id : id}, {$set : {eng : words[index].eng, kor : words[index].kor, status : "doing"}});
+			ViewWord.update({_id : id}, {$set : {eng : words[index].eng, kor : words[index].kor}});
 		
 			return {eng : words[index].eng, kor : words[index].kor};
 		},
 		
 		readyToPractice : function () {
-			return ViewWord.find().count();
+			var status = ViewWord.findOne().status;
+			
+			if(status === "doing") {
+				return true;
+			}
+			return false;
+		},
+		
+		getSelectedList : function (seletectedId) {
+			var list = Lists.find({_id : seletectedId}).fetch();
+			return list[0].words;
 		}
 	});
 }

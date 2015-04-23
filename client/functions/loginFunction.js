@@ -27,7 +27,7 @@ if(Meteor.isClient) {
 				Session.set("userType", res.userType);
 				Session.set("name", res.name);
 				Session.set("userId", id);
-				Router.go("/"+res);
+				Router.go("/"+res.userType);
 			}
 		});
 	}

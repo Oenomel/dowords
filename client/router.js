@@ -47,7 +47,7 @@ Router.route("/viewList", function () {
 			this.render("wordListView");
 		}
 		else {
-			this.render("student_doPracticeView");
+			this.render("studentSelfPracticeView");
 		}
 		return;
 	}
