@@ -21,7 +21,8 @@ Router.route("/teacher", function () {
 		this.render("teacherHomeView");
 	}
 	else {
-		this.render("initView");
+		Session.set("userType", "noType");
+		this.redirect("/");
 	}
 });
 
@@ -33,7 +34,8 @@ Router.route("/student", function () {
 		this.render("studentHomeView");
 	}
 	else {
-		this.render("initView");
+		Session.set("userType", "noType");
+		this.redirect("/");
 	}
 });
 
@@ -46,8 +48,12 @@ Router.route("/viewList", function () {
 		if(Session.equals("userType", "teacher")) {
 			this.render("wordListView");
 		}
-		else {
+		else if(Session.equals("userType", "student")) {
 			this.render("studentSelfPracticeView");
+		}
+		else {
+			Session.set("userType", "noType");
+			this.redirect("/");
 		}
 		return;
 	}
@@ -59,9 +65,10 @@ Router.route("/teacher/doPractice", function () {
 	var userType = Session.get("userType");
 	
 	if(userId.length !== 0 || userType !== "student") {
-		this.render("teacher_doPracticeView");
+		this.render("teacherDoPracticeView");
 	}
 	else {
-		this.render("initView");
+		Session.set("userType", "noType");
+		this.redirect("/");
 	}
 });
