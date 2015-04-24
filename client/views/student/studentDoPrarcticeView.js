@@ -2,7 +2,7 @@
 if(Meteor.isClient) {
 	
 	Template.studentDoPracticeView.onRendered(function () {
-		if(Session.get("userType") !== "student" || Session.get("userId").length === 0) {
+		if(Session.get("userId").length === 0 || Session.get("userType") !== "student") {
 			Router.go("/");
 		}
 		

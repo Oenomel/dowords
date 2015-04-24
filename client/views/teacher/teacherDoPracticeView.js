@@ -1,6 +1,10 @@
 
 if(Meteor.isClient) {	
 	Template.teacherDoPracticeView.onRendered(function () {
+		if(Session.get("userId").length === 0 || !Session.equals("userType", "teacher")) {
+			Router.go("/");
+		}
+		
 		Session.set("cursor", 0);
 		Meteor.call("initDoPractice", Session.get("userId"), Session.get("selectedList"), function (err, res) {
 			if(err) {

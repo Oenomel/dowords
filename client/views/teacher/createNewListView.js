@@ -3,7 +3,7 @@ if(Meteor.isClient) {
 	Session.set("newList", "[]");
 	
 	Template.createNewListView.onRendered(function () {
-		if(Session.equals("userType", "noType") || Session.equals("userType", "student")) {
+		if(Session.get("userId").length === 0 || !Session.equals("userType", "teacher")) {
 			Router.go("/");
 		}
 		

@@ -2,7 +2,7 @@
 if(Meteor.isClient) {
 	
 	Template.studentHomeView.onRendered(function () {
-		if(Session.equals("userType", "noType") || Session.equals("userType", "teacher")) {
+		if(Session.get("userId").length === 0 || Session.get("userType") !== "student") {
 			Router.go("/");
 		}
 		

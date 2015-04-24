@@ -1,7 +1,7 @@
 
 if(Meteor.isClient) {
 	Template.viewListView.onRendered(function () {
-		if(Session.equals("userType", "noType")) {
+		if(Session.get("userId").length === 0 || Session.equals("userType", "noType")) {
 			Router.go("/");
 		}
 		
