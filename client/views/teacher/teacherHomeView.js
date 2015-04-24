@@ -5,15 +5,16 @@ if(Meteor.isClient) {
 			Router.go("/");
 		}
 		
-		Meteor.call("getLastListDate", function (err, res) {
+		Meteor.call("getLastList", function (err, res) {
 			if(err) {
 				alert("Error 003");
 			}
 			else {
-				if(res.indexOf("undefined") !== -1) {
-					res = "등록된 목록이 없습니다.";
+				if(res._id === "none") {
+					res.date = "등록된 목록이 없습니다.";
 				}
-				Session.set("lastListDate", res);
+				Session.set("lastListDate", res.date);
+				$("#lastListDateBtn").data("list_id", res._id);
 			}
 		});
 	});
@@ -37,22 +38,16 @@ if(Meteor.isClient) {
 			Router.go("/viewList");
 		},
 		
-		"click #lastListDateBtn" : function () {
-			Meteor.call("goLastListView", function (err, res) {
-				if(err) {
-					alert("Error 010");
-				}
-				else {
-					if(res) {
-						Session.set("fromHome", true);
-						Session.set("selectedList", res[0]._id);
-						Router.go("/viewList?list=" + res[0]._id);
-					}
-					else {
-						return;
-					}
-				}
-			});
+		"click #lastListDateBtn" : function (evt) {
+			var _id = $(evt.currentTarget).data("list_id");
+			if(_id !== "none") {
+				Session.set("fromHome", true);
+				Session.set("selectedList", _id);
+				Router.go("/viewList?list=" + _id);
+			}
+			else {
+				return;
+			}
 		},
 		
 		"click #logoutBtn" : function () {

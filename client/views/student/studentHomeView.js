@@ -8,21 +8,23 @@ if(Meteor.isClient) {
 		
 		Session.set("isReady", "준비중 입니다.");
 		
-		Meteor.call("readyToPractice", function (err, res) {
+		Meteor.call("readyToPractice", Session.get("teacher"), function (err, res) {
 			if(err) {
 				alert("Error 012");
 			}
 			else {
 				if(res) {
 					Session.set("isReady", "학습을 시작합니다.");
+					$("#startPracticeBtn").css("color", "blue");
 				}
 				else {
 					Session.set("isReady", "준비중 입니다.");
+					$("#startPracticeBtn").css("color", "red");
 				}
 			}
 		});
 
-		var cursor = ViewWord.find();
+		var cursor = ViewWord.find({createTeacher : Session.get("teacher")});
 		var handler = cursor.observeChanges({
 			changed : function (id, word) {
 				if(word.status === "finish") {
@@ -55,10 +57,7 @@ if(Meteor.isClient) {
 		"click #startPracticeBtn" : function () {
 			if(Session.equals("isReady", "학습을 시작합니다.")) {
 				if(confirm("학습을 시작 하시겠습니까?")) {
-					
-				}
-				else {
-					
+					Router.go("/student/doPractice");
 				}
 			}
 			else {

@@ -2,7 +2,7 @@
 if(Meteor.isClient) {	
 	Template.teacherDoPracticeView.onRendered(function () {
 		Session.set("cursor", 0);
-		Meteor.call("getListLength", Session.get("selectedList"), function (err, res) {
+		Meteor.call("initDoPractice", Session.get("userId"), Session.get("selectedList"), function (err, res) {
 			if(err) {
 				alert("Error 008");
 			}
@@ -10,6 +10,7 @@ if(Meteor.isClient) {
 				Session.set("listLength", res.len);
 				Session.set("eng", res.eng);
 				Session.set("kor", res.kor);
+				Session.set("createTeacher", res.createTeacher);
 			}
 		});
 	});
@@ -37,7 +38,7 @@ if(Meteor.isClient) {
 			if(Session.equals("cursor", 0)) {
 				return;
 			}	
-			Meteor.call("viewAnotherWord", Session.get("selectedList"), Session.get("cursor")-1, function (err, res) {
+			Meteor.call("viewAnotherWord", Session.get("createTeacher"), Session.get("selectedList"), Session.get("cursor")-1, function (err, res) {
 				if(err) {
 					alert("Error 006");
 				}
@@ -60,7 +61,7 @@ if(Meteor.isClient) {
 				return;
 			}
 			
-			Meteor.call("viewAnotherWord", Session.get("selectedList"), Session.get("cursor")+1, function (err, res) {
+			Meteor.call("viewAnotherWord", Session.get("createTeacher"), Session.get("selectedList"), Session.get("cursor")+1, function (err, res) {
 				if(err) {
 					alert("Error 007");
 				}

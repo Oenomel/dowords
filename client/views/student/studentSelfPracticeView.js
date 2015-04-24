@@ -5,14 +5,14 @@ if(Meteor.isClient) {
 			Router.go("/");
 		}
 		
-		Meteor.call("getSelectedList", Session.get("selectedList"), function (err, res) {
+		Meteor.call("getWordList", Session.get("selectedList"), function (err, res) {
 			if(err) {
 				alert("Error 013");
 			}
 			else {
-				Session.set("wordList", res);
+				Session.set("wordList", JSON.parse(res[0].words));
 				Session.set("cursor", 0);
-				Session.set("listLength", JSON.parse(res).length)
+				Session.set("listLength", Session.get("wordList").length);
 				createQuiz();
 			}
 		});
@@ -24,14 +24,8 @@ if(Meteor.isClient) {
 	});
 	
 	Template.studentSelfPracticeView.helpers({
-		word : function () {
-			var word = JSON.parse(Session.get("wordList"))[Session.get("cursor")];
-			return word.eng;
-		},
-		
-		mean : function () {
-			var word = JSON.parse(Session.get("wordList"))[Session.get("cursor")];
-			return word.kor;
+		content : function () {
+			return [Session.get("wordList")[Session.get("cursor")]];
 		}
 	});
 	

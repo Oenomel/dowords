@@ -17,21 +17,8 @@ Router.route("/teacher", function () {
 	var userId = Session.get("userId");
 	var userType = Session.get("userType");
 	
-	if(userId.length !== 0 || userType !== "teacher") {
+	if(userId.length !== 0 && userType === "teacher") {
 		this.render("teacherHomeView");
-	}
-	else {
-		Session.set("userType", "noType");
-		this.redirect("/");
-	}
-});
-
-Router.route("/student", function () {
-	var userId = Session.get("userId");
-	var userType = Session.get("userType");
-	
-	if(userId.length !== 0 || userType !== "student") {
-		this.render("studentHomeView");
 	}
 	else {
 		Session.set("userType", "noType");
@@ -64,7 +51,7 @@ Router.route("/teacher/doPractice", function () {
 	var userId = Session.get("userId");
 	var userType = Session.get("userType");
 	
-	if(userId.length !== 0 || userType !== "student") {
+	if(userId.length !== 0 && userType === "teacher") {
 		this.render("teacherDoPracticeView");
 	}
 	else {
@@ -72,3 +59,30 @@ Router.route("/teacher/doPractice", function () {
 		this.redirect("/");
 	}
 });
+
+
+Router.route("/student", function () {
+	var userId = Session.get("userId");
+	var userType = Session.get("userType");
+	
+	if(userId.length !== 0 && userType === "student") {
+		this.render("studentHomeView");
+	}
+	else {
+		Session.set("userType", "noType");
+		this.redirect("/");
+	}
+});
+
+Router.route("/student/doPractice", function () {
+	var userId = Session.get("userId");
+	var userType = Session.get("userType");
+	
+	if(userId.length !== 0 && userType === "student") {
+		this.render("studentDoPracticeView");
+	}
+	else {
+		Session.set("userType", "noType");
+		this.redirect("/");
+	}
+})

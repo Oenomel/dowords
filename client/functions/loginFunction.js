@@ -18,7 +18,7 @@ if(Meteor.isClient) {
 	}
 	
 	checkUserType = function (id) {
-		Meteor.call("checkUserType", id.toLowerCase(), function (err, res) {
+		Meteor.call("getUserInfo", id.toLowerCase(), function (err, res) {
 			if(err) {
 				alert("Error 011");
 				return;
@@ -26,6 +26,7 @@ if(Meteor.isClient) {
 			else {
 				Session.set("userType", res.userType);
 				Session.set("name", res.name);
+				Session.set("teacher", res.teacher);
 				Session.set("userId", id);
 				Router.go("/"+res.userType);
 			}

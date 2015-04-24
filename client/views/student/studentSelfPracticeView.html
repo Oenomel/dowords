@@ -1,8 +1,10 @@
 
 <template name="studentSelfPracticeView">
 	<div class="wordWrapper">
-		<div id="wordContainer">{{word}}</div>
-		<div id="meanContainer">{{mean}}</div>
+		{{#each content}}
+		<div id="wordContainer">{{eng}}</div>
+		<div id="meanContainer">{{kor}}</div>
+		{{/each}}
 	</div>
 	<div class="listBtnContainer">
 		<div id="exitSelfPracBtn" class="listBtn">끝내기</div>

@@ -18,7 +18,7 @@ if(Meteor.isClient) {
 				}
 				
 				Session.set("listMemo", memo);
-				Session.set("words", JSON.stringify(res[0].words));
+				Session.set("words", res[0].words);
 			}
 		});
 	});
@@ -32,8 +32,8 @@ if(Meteor.isClient) {
 			return Session.get("listMemo");
 		},
 		
-		words : function () {
-			return JSON.parse(JSON.parse(Session.get("words")));
+		words : function () {		
+			return JSON.parse(Session.get("words"));
 		}
 	});
 	
