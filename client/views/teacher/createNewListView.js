@@ -19,9 +19,23 @@ if(Meteor.isClient) {
 			addWordToListFunction();
 		},
 		
+		"click #modifyWordBtn" : function () {
+			doModifyFunction();
+		},
+		
+		"click #removeWordBtn" : function () {
+			removeWordFunction();
+		},
+		
 		"click #cancelWordBtn" : function () {
 			$("input[name='inputText']").val("");
 			$(".inputWrapper").fadeOut();
+			finishModifyWord();
+		},
+		
+		"click tr" : function (evt) {
+			modifyWordFunction(evt.currentTarget);
+			$(".inputWrapper").fadeIn();
 		},
 		
 		"click #submitListBtn" : function () {

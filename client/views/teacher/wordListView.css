@@ -6,29 +6,26 @@
     only screen and (max-width: 480px) 
 {
 	.listHeader {
-		margin : 0 auto;
-		padding-top : 100px;
-		padding-bottom : 50px;
-		font-size : 40px;
-	}
-
-	.leftSpan {
-		margin-right : 50px;
+		width : 90%;
+		margin : 0px auto;
+		font-size : 20px;
+		padding : 10px 0;
+		border-bottom-left-radius : 10px;
+		border-bottom-right-radius : 10px;
 	}
 	
 	.wordListContainer {
-		padding : 50px 0 100px 0;
-		height : 700px;
+		width : 100%;
+		margin : 10px auto;
+		height : 330px;
+		text-align : center;
 		overflow-y : auto;
+		border : 0;
+		font-size : 20px;
 	}
-
-	.wordContainer {
-		margin : 15px 0;
-	}
-
-	.wordContainer div {
-		display : inline;
-		margin : 0 100px;
-		font-size : 45px;
+	
+	.wordListContainer td {
+		width : 50%;
+		padding : 5px 0;
 	}
 }

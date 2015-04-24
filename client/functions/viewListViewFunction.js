@@ -2,7 +2,7 @@
 if(Meteor.isClient) {
 	setListViewFunction = function (res) {
 		for(var i=0; i<res.length; i++) {
-			var cont = $("<div></div>");
+			var cont = $("<tr></tr>");
 			cont.addClass("listItem");
 			cont.attr("id", res[i]._id);
 			
@@ -13,11 +13,11 @@ if(Meteor.isClient) {
 				memo = "---"
 			}
 			
-			var dateDiv = "<div>" + date + "</div>";
-			var memoDiv = "<div>" + memo + "</div>";			
+			var dateDiv = "<td>" + date + "</td>";
+			var memoDiv = "<td>" + memo + "</td>";			
 			cont.append(dateDiv).append(memoDiv);
 			
-			$(".listContainer").append(cont);
+			$(".table").append(cont);
 		}
 	}
 }

@@ -12,18 +12,8 @@
 		height : 100%;
 	}
 	
-	#userTypeCont {
-		margin : 0px auto;
-		padding-top : 300px;
-		width : 90%;
-		text-align : center;
-	}
-
-	#userTypeCont span {
-		vertical-align : 40px;
-		font-size : 60px;
-		margin-right : 100px;
-		cursor : pointer;
+	td {
+		border-top : 0px;
 	}
 
 	.listWrapper {
@@ -33,39 +23,21 @@
 	}
 		
 	.listBtnContainer {
-		width : 60%;
-		margin : 50px auto 0 auto;
-		border : 1px solid #000;
-		border-radius : 5px;
-		font-size : 50px;
+		width : 90%;
+		margin : 0px auto;
+		font-size : 30px;
 		text-align : center;
-	}
-
-	.listBtnContainer hr {
-		margin : 0 auto;
-	}
-
-	.listBtn {
-		cursor : pointer;
-		padding : 20px 0;
-	}
-	
-	.bigBtn {
-		margin : 0 auto;
-		padding-top : 150px;
 	}
 	
 	.loginContainer {
-		padding : 400px 0;
+		padding : 100px 0;
 	}
 
 	.loginContainer input {
-		margin : 30px auto;
-		width : 50%;
-		border : 0;
-		border-bottom : 1px solid #000;
-		padding-left : 40px;
-		font-size : 40px;
+		margin : 20px auto;
+		width : 90%;
+		padding : 10px 0 10px 15px;
+		font-size : 20px;
 	}
 	
 	.loginContainer input:focus {

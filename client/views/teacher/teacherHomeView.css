@@ -6,17 +6,17 @@
 {
 	.homeContainer {
 		margin : 0 auto;
-		padding : 300px 0;
-		width : 70%;
+		padding : 40px 0;
+		width : 90%;
 		text-align : center;
 	}
 
 	.homeContainer div {
-		margin : 60px auto;
-		padding : 30px 0;
+		margin : 30px auto;
+		padding : 15px 0;
 		border : 1px solid #000;
 		border-radius : 5px;
 		cursor : pointer;
-		font-size : 40px;
+		font-size : 20px;
 	}
 }

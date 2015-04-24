@@ -1,11 +1,11 @@
 <template name="studentDoPracticeView">
-	<div class="wordWrapper">
+	<div class="wordWrapper studentPracticeViewWrapper">
 	{{#each contents}}
 		<div id="wordContainer">{{eng}}</div>
 		<div id="meanContainer">{{kor}}</div>
 	{{/each}}	
 	</div>
 	<div id="studentDoPracticeExitBtn" class="listBtnContainer">
-		<div id="exitSelfPracBtn" class="listBtn">끝내기</div>
-	</div>	
+		<div id="exitSelfPracBtn" class="btn btn-lg btn-primary btn-block">끝내기</div>
+	</div>
 </template>

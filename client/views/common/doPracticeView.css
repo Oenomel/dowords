@@ -11,12 +11,22 @@
 
 	.practiceCont {
 		width : 100%;
+		padding-bottom : 30px;
 		text-align : center;
 	}
 
 	.wordWrapper {
-		padding-top : 150px;
+		padding-top : 30px;
 		text-align : center;
+	}
+	
+	.studentPracticeViewWrapper {
+		padding-top : 100px;
+	}
+	
+	#prevBtn, #nextBtn {
+		width : 35%;
+		margin : 0 10px;
 	}
 	
 	.wordWrapper div {
@@ -24,15 +34,12 @@
 	}
 
 	#wordContainer {
-		font-size : 80px;
+		font-size : 40px;
 	}
 
 	#meanContainer {
 		margin : 40px 0;
-		font-size : 50px;
-	}
-	
-	#exitSelfPracBtn {
+		font-size : 25px;
 	}
 	
 	.hideWord {

@@ -16,7 +16,7 @@ if(Meteor.isClient) {
 	});
 	
 	Template.viewListView.events({
-		"click .listBtn" : function () {
+		"click .btn" : function () {
 			Router.go("/"+Session.get("userType"));
 		},
 		

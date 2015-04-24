@@ -15,11 +15,11 @@ if(Meteor.isClient) {
 			else {
 				if(res) {
 					Session.set("isReady", "학습을 시작합니다.");
-					$("#startPracticeBtn").css("color", "blue");
+					$("#startPracticeBtn").removeClass("btn-danger").addClass("btn-success");
 				}
 				else {
 					Session.set("isReady", "준비중 입니다.");
-					$("#startPracticeBtn").css("color", "red");
+					$("#startPracticeBtn").removeClass("btn-success").addClass("btn-danger");
 				}
 			}
 		});
@@ -44,10 +44,10 @@ if(Meteor.isClient) {
 		
 		practiceStatus : function () {
 			if(Session.equals("isReady", "학습을 시작합니다.")) {
-				$("#startPracticeBtn").css("color", "blue");
+				$("#startPracticeBtn").removeClass("btn-danger").addClass("btn-success");
 			}
 			else {
-				$("#startPracticeBtn").css("color", "red");
+				$("#startPracticeBtn").removeClass("btn-success").addClass("btn-danger");
 			}
 			return Session.get("isReady");
 		}

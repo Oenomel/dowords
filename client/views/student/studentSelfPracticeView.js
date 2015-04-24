@@ -26,6 +26,14 @@ if(Meteor.isClient) {
 	Template.studentSelfPracticeView.helpers({
 		content : function () {
 			return [Session.get("wordList")[Session.get("cursor")]];
+		},
+		
+		cursor : function () {
+			return Session.get("cursor") + 1;
+		},
+		
+		length : function () {
+			return Session.get("listLength");
 		}
 	});
 	
@@ -37,7 +45,7 @@ if(Meteor.isClient) {
 			return;
 		},
 		
-		"click #nextBtn" : function () {
+		"click .hiddenBtn" : function () {
 			if(Session.equals("cursor", Session.get("listLength") - 1)) {
 				var sel = confirm("마지막 단어입니다. 목록으로 돌아가시겠습니까?");
 				

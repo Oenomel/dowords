@@ -1,20 +1,22 @@
 
 <template name="wordListView">
 	<div class="listWrapper">
-		<div class="listHeader">
+		<div class="listHeader bg-primary">
 			<span class="leftSpan">{{listDate}}</span> <span>{{listMemo}}</span>
 		</div>
 		<div class="wordListContainer">
-			{{#each words}}
-			<div class="wordContainer">
-				<div>{{eng}}</div> <div>{{kor}}</div>
-			</div>
-			{{/each}}
+			<table class="table">
+				{{#each words}}
+				<tr class="wordContainer">
+					<td>{{eng}}</td>
+					<td>{{kor}}</td>
+				</tr>
+				{{/each}}
+			</table>
 		</div>
 		<div class="listBtnContainer">
-			<div class="listBtn" id="backBtn">돌아가기</div>
-			<hr>
-			<div class="listBtn" id="doBtn">학습시작</div>
+			<div class="listBtn btn btn-lg btn-primary btn-block" id="backBtn">돌아가기</div>
+			<div class="listBtn btn btn-lg btn-primary btn-block" id="doBtn">학습시작</div>
 		</div>
 	</div>
 </template>
