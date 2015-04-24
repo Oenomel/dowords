@@ -1,7 +1,9 @@
 
 <template name="teacherHomeView">
 	<div id="teacherHomeContainer" class="homeContainer">
-		<div class="menuListBtn">{{name}} 님 안녕하세요!</div>
+		<div class="viewCount">
+			<span class="tag">현재 접속 중인 학생</span> <span class="tagValue">{{count}}명</span>
+		</div>
 		<div class="menuListBtn" id="lastListDateBtn">
 			<span class="tag">최근 목록</span> <span class="tagValue">{{lastListDate}}</span>
 		</div>
