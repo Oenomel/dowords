@@ -40,7 +40,7 @@ if(Meteor.isServer) {
 		
 		getLists : function () {
 			var lists = [];			
-			var cursor = Lists.find().fetch();
+			var cursor = Lists.find({}, {sort : {timeStamp : -1}}).fetch();
 			
 			for(var i=0; i<cursor.length; i++) {
 				var list = cursor[i];
