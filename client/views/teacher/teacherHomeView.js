@@ -20,8 +20,8 @@ if(Meteor.isClient) {
 	});
 	
 	Template.teacherHomeView.helpers({
-		count : function () {
-			return 0;
+		name : function () {
+			return Session.get("name");
 		},
 		
 		lastListDate : function () {
