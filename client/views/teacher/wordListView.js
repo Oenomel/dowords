@@ -32,8 +32,13 @@ if(Meteor.isClient) {
 			return Session.get("listMemo");
 		},
 		
-		words : function () {		
-			return JSON.parse(Session.get("words"));
+		words : function () {
+			if(Session.get("words").length !== 0) {
+				return JSON.parse(Session.get("words"));
+			}
+			else {
+				return [];
+			}
 		}
 	});
 	
