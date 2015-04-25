@@ -33,7 +33,7 @@ if(Meteor.isClient) {
 			finishModifyWord();
 		},
 		
-		"click tr" : function (evt) {
+		"click .listItem" : function (evt) {	
 			modifyWordFunction(evt.currentTarget);
 			$(".inputWrapper").fadeIn();
 		},
