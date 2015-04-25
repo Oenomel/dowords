@@ -17,6 +17,21 @@ if(Meteor.isClient) {
 		});	
 	}
 	
+	studentLoginFunction = function () {
+		var user = {username : "stu1"}
+		
+		Meteor.loginWithPassword(user, "stu1", function (err) {		
+			if(!err) {
+				checkUserType("stu1");
+			}
+			else {
+				alert("Wrong ID or PW!");
+				$("input[name='memberId']").val("").focus();
+				$("input[name='memberPw']").val("");
+			}
+		});	
+	}
+	
 	checkUserType = function (id) {
 		Meteor.call("getUserInfo", id.toLowerCase(), function (err, res) {
 			if(err) {

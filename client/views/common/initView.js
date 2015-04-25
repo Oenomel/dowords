@@ -9,6 +9,10 @@ if(Meteor.isClient) {
 			loginFunction();
 		},
 		
+		"click #studentLoginBtn" : function () {
+			studentLoginFunction();
+		},
+		
 		"keydown [name='memberPw']" : function (evt) {
 			if(evt.keyCode === 13) {
 				loginFunction();

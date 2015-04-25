@@ -38,10 +38,6 @@ if(Meteor.isClient) {
 	});
 	
 	Template.studentHomeView.helpers({
-		name : function () {
-			return Session.get("name");
-		},
-		
 		practiceStatus : function () {
 			if(Session.equals("isReady", "학습을 시작합니다.")) {
 				$("#startPracticeBtn").removeClass("btn-danger").addClass("btn-success");
