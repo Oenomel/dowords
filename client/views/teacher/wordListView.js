@@ -5,6 +5,8 @@ if(Meteor.isClient) {
 			Router.go("/");
 		}
 		
+		$(".inputWrapper").hide();
+		
 		Meteor.call("getWordList", Session.get("selectedList"), function (err, res) {
 			if(err) {
 				alert("Error 005");
@@ -19,6 +21,7 @@ if(Meteor.isClient) {
 				
 				Session.set("listMemo", memo);
 				Session.set("words", res[0].words);
+				Session.set("originWords", res[0].words);
 			}
 		});
 	});
@@ -43,7 +46,37 @@ if(Meteor.isClient) {
 	});
 	
 	Template.wordListView.events({
+		"click .wordContainer" : function (evt) {
+			showInputWrapper(evt);		
+		},
+		
+		"click #insertNewWordBtn" : function () {
+			$(".inputWrapper").fadeIn();
+		},
+		
+		"click #addWordBtn" : function () {
+			addWordContainer();
+		},
+		
+		"click #removeWordBtn" : function () {
+			removeWordContainer();
+		},
+		
+		"click #modifyWordBtn" : function () {
+			modifyWordContainer();
+		},
+		
+		"click #cancelWordBtn" : function () {
+			$("input[name='inputText']").val("");
+			$(".inputWrapper").fadeOut();
+			finishModifyWordContainer();
+		},
+		
 		"click #backBtn" : function () {
+			if(!Session.equals("words", Session.get("originWords"))) {
+				saveChangedWordList();
+			}
+			
 			Session.set("selectedList", "");
 			Session.set("listDate", "");
 			Session.set("listMemo", "");
@@ -62,6 +95,9 @@ if(Meteor.isClient) {
 			var select = window.confirm("학습을 시작합니다.");
 			
 			if(select) {
+				if(!Session.equals("words", Session.get("originWords"))) {
+					saveChangedWordList();
+				}
 				Router.go("/teacher/doPractice");
 			}
 		}

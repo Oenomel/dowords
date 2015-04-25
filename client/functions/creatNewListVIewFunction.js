@@ -13,8 +13,7 @@ if(Meteor.isClient) {
 		list.push({eng : eng, kor : kor});
 		Session.set("newList", JSON.stringify(list));
 		
-		$(".inputWrapper").hide();
-		$(".inputWord").val("");
+		finishModifyWord();
 		
 		var newWord = $("<tr class='listItem'></tr>");
 		var engDiv = "<td style='border-top:0px'>" + eng + "</td>";
@@ -28,8 +27,8 @@ if(Meteor.isClient) {
 	
 	modifyWordFunction = function (target) {
 		var td = $(target).find("td");
-		var eng = $("input[name='inputEng']").val($(td[0]).text());
-		var kor = $("input[name='inputKor']").val($(td[1]).text());
+		$("input[name='inputEng']").val($(td[0]).text());
+		$("input[name='inputKor']").val($(td[1]).text());
 		$("#addWordBtn").hide();
 		$(".modifyBtn").show().data("index", $(target).data("index"));	
 	}

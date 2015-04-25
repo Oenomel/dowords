@@ -90,6 +90,11 @@ if(Meteor.isServer) {
 			else {
 				return false;
 			}			
+		},
+		
+		changeWordList : function (list_id, words) {
+			Lists.update({_id : list_id}, {$set : {words : words}});
+			return true;
 		}
 	});
 }

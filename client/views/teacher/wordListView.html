@@ -12,11 +12,35 @@
 					<td>{{kor}}</td>
 				</tr>
 				{{/each}}
+				<tfoot>
+					<tr>
+						<td colspan=2>
+							<div class="btn btn-lg btn-default" style="width:90%" id="insertNewWordBtn">Insert a new word</div>
+						</td>
+					</tr>
+				</tfoot>
 			</table>
 		</div>
 		<div class="listBtnContainer">
 			<div class="listBtn btn btn-lg btn-primary btn-block" id="backBtn">돌아가기</div>
 			<div class="listBtn btn btn-lg btn-primary btn-block" id="doBtn">학습시작</div>
+		</div>
+	</div>
+	
+	<div class="inputWrapper">
+		<div class="inputContainer">
+			<div class="inputBtnContainer">
+				<div class="btn btn-lg btn-danger btn-block modifyBtn" id="removeWordBtn">삭제하기</div>
+			</div>
+			<div class="inputDiv">
+				<input type="text" class="inputWord" name="inputEng" placeholder="English"/>
+				<input type="text" class="inputWord" name="inputKor" placeholder="Korean"/>
+			</div>
+			<div class="inputBtnContainer">
+				<div class="btn btn-lg btn-primary btn-block modifyBtn" id="modifyWordBtn">수정하기</div>
+				<div class="btn btn-lg btn-primary btn-block" id="addWordBtn">등록하기</div>
+				<div class="btn btn-lg btn-primary btn-block" id="cancelWordBtn">취소하기</div>
+			</div>
 		</div>
 	</div>
 </template>
