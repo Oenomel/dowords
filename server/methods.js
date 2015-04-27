@@ -58,14 +58,14 @@ if(Meteor.isServer) {
 			var list = Lists.find({_id : _id}).fetch();		
 			var words = JSON.parse(list[0].words);
 			var createTeacher = Users.findOne({username : username})._id;
-			var viewWord = ViewWord.find({createTeacher : createTeacher});
+			var viewWordCursor = ViewWord.find({createTeacher : createTeacher});
 			var createTime = new Date();
 			
-			if(viewWord.count() === 0) {
+			if(viewWordCursor.count() === 0) {
 				ViewWord.insert({eng : words[0].eng, kor : words[0].kor, status : "doing", createTeacher : createTeacher, createTime : createTime.getTime()});
 			}
 			else {
-				var getId = viewWord.fetch()[0];			
+				var getId = viewWordCursor.fetch()[0];			
 				ViewWord.update({_id : getId._id}, {eng : words[0].eng, kor : words[0].kor, status : "doing", createTeacher : createTeacher, createTime : createTime.getTime()});
 			}
 			
@@ -100,7 +100,6 @@ if(Meteor.isServer) {
 		
 		chatMethod : function (chatJson) {
 			var chat = JSON.parse(chatJson);
-console.log(chat);
 			
 			Chat.insert({
 				createTime : chat.createTime,

@@ -1,7 +1,5 @@
 
 if(Meteor.isClient) {
-	chatOb = null;
-	
 	Template.teacherDoPracticeView.onRendered(function () {
 		if(Session.get("userId").length === 0 || !Session.equals("userType", "teacher")) {
 			Router.go("/");
@@ -37,7 +35,8 @@ if(Meteor.isClient) {
 		"click .left" : function () {
 			if(Session.equals("cursor", 0)) {
 				return;
-			}	
+			}
+			
 			Meteor.call("viewAnotherWord", Session.get("createTeacher"), Session.get("selectedList"), Session.get("cursor")-1, function (err, res) {
 				if(err) {
 					alert("Error 006");
@@ -68,7 +67,7 @@ if(Meteor.isClient) {
 					if(res) {
 						Session.set("cursor", Session.get("cursor") + 1);
 						$(".carousel").carousel("next");
-					}	
+					}
 				}
 			});
 		},

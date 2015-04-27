@@ -26,6 +26,15 @@ if(Meteor.isClient) {
 
 		var cursor = ViewWord.find({createTeacher : Session.get("teacher")});
 		var handler = cursor.observeChanges({
+			added : function (id, word) {
+				if(word.status === "finish") {
+					Session.set("isReady", "준비중 입니다.");
+				}
+				else {
+					Session.set("isReady", "학습을 시작합니다.");
+				}
+			},
+			
 			changed : function (id, word) {
 				if(word.status === "finish") {
 					Session.set("isReady", "준비중 입니다.");
