@@ -59,16 +59,17 @@ if(Meteor.isServer) {
 			var words = JSON.parse(list[0].words);
 			var createTeacher = Users.findOne({username : username})._id;
 			var viewWord = ViewWord.find({createTeacher : createTeacher});
+			var createTime = new Date();
 			
 			if(viewWord.count() === 0) {
-				ViewWord.insert({eng : words[0].eng, kor : words[0].kor, status : "doing", createTeacher : createTeacher});
+				ViewWord.insert({eng : words[0].eng, kor : words[0].kor, status : "doing", createTeacher : createTeacher, createTime : createTime.getTime()});
 			}
 			else {
 				var getId = viewWord.fetch()[0];			
-				ViewWord.update({_id : getId._id}, {eng : words[0].eng, kor : words[0].kor, status : "doing", createTeacher : createTeacher});
+				ViewWord.update({_id : getId._id}, {eng : words[0].eng, kor : words[0].kor, status : "doing", createTeacher : createTeacher, createTime : createTime.getTime()});
 			}
-						
-			return {createTeacher : createTeacher, len : words.length, eng : words[0].eng, kor : words[0].kor};
+			
+			return {createTeacher : createTeacher, createTime : createTime.getTime(), len : words.length, words : JSON.stringify(words)};
 		},
 		
 		viewAnotherWord : function (createTeacher, seletectedId, index) {
@@ -95,6 +96,20 @@ if(Meteor.isServer) {
 		changeWordList : function (list_id, words) {
 			Lists.update({_id : list_id}, {$set : {words : words}});
 			return true;
+		},
+		
+		chatMethod : function (chatJson) {
+			var chat = JSON.parse(chatJson);
+console.log(chat);
+			
+			Chat.insert({
+				createTime : chat.createTime,
+				createTeacher : chat.createTeacher,
+				speaker : chat.speaker,
+				profileName : chat.profileName,
+				chatText : chat.chatText,
+				timeStamp : chat.timeStamp
+			});
 		}
 	});
 }

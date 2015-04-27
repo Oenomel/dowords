@@ -40,5 +40,9 @@ if(Meteor.isServer) {
 		Meteor.publish("viewWord", function () {
 			return ViewWord.find();
 		});
+		
+		Meteor.publish("chat", function () {
+			return Chat.find();
+		});
 	});
 }

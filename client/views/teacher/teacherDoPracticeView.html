@@ -1,17 +1,34 @@
 <template name="teacherDoPracticeView">
-	<div class="practiceCont">
+
+<div class="practiceWrapper">
+	<div id="practiceCont" class="carousel slide" data-ride="carousel">
 		<div class="listInfo">{{cursor}} / {{length}}</div>
-		<div class="wordWrapper">
-			<div id="wordContainer">{{word}}</div>
-			<div id="meanContainer">{{mean}}</div>
-		</div>
+		<div class="carousel-inner" role="listbox"></div>
+		
+		<a class="left carousel-control" href="#practiceCont" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only">Prev</span>
+		</a>
+		<a class="right carousel-control" href="#practiceCont" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
 	</div>
 	
-	<div class="listWrapper">
-		<div class="listBtnContainer row">
-			<div class="col-md-1 btn btn-lg btn-primary" id="prevBtn">이전</div>
-			<div class="col-md-1 btn btn-lg btn-primary" id="nextBtn">다음</div>
+	<div class="chatWrapper">
+		<div class="viewAndHidChatBtn">
+			<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+		</div>
+		<div class="chatContainer">
+			<div class="chatContentContainer"></div>
+			<div class="chatInputContainer">
+				<div class="input-group">
+					<input type="text" class="form-control chatInput" aria-describedby="sizing-addon2" placeholder="내용을 입력해 주세요...">
+					<span class="input-group-addon sendBtn">Send</span>
+				</div>
+			</div>
 		</div>
 	</div>
+</div>
 </template>
 

@@ -1,5 +1,7 @@
 
-if(Meteor.isClient) {	
+if(Meteor.isClient) {
+	chatOb = null;
+	
 	Template.teacherDoPracticeView.onRendered(function () {
 		if(Session.get("userId").length === 0 || !Session.equals("userType", "teacher")) {
 			Router.go("/");
@@ -12,22 +14,16 @@ if(Meteor.isClient) {
 			}
 			else {
 				Session.set("listLength", res.len);
-				Session.set("eng", res.eng);
-				Session.set("kor", res.kor);
+				Session.set("words", res.words);
 				Session.set("createTeacher", res.createTeacher);
+				Session.set("createTime", res.createTime);
+				
+				createCarousel(JSON.parse(res.words));
 			}
 		});
 	});
 	
 	Template.teacherDoPracticeView.helpers({
-		word : function () {
-			return Session.get("eng");
-		},
-		
-		mean : function () {
-			return Session.get("kor");
-		},
-		
 		cursor : function () {
 			return Session.get("cursor") + 1;
 		},
@@ -38,7 +34,7 @@ if(Meteor.isClient) {
 	});
 	
 	Template.teacherDoPracticeView.events({		
-		"click #prevBtn" : function () {
+		"click .left" : function () {
 			if(Session.equals("cursor", 0)) {
 				return;
 			}	
@@ -48,13 +44,12 @@ if(Meteor.isClient) {
 				}
 				else {
 					Session.set("cursor", Session.get("cursor") - 1);
-					Session.set("eng", res.eng);
-					Session.set("kor", res.kor);
+					$(".carousel").carousel("prev");
 				}
 			});
 		},
 		
-		"click #nextBtn" : function () {
+		"click .right" : function () {
 			if(Session.equals("cursor", Session.get("listLength") -1)) {
 				var sel = confirm("마지막 단어입니다. 목록으로 돌아가시겠습니까?");
 				
@@ -72,11 +67,29 @@ if(Meteor.isClient) {
 				else {
 					if(res) {
 						Session.set("cursor", Session.get("cursor") + 1);
-						Session.set("eng", res.eng);
-						Session.set("kor", res.kor);
+						$(".carousel").carousel("next");
 					}	
 				}
 			});
-		}	
+		},
+		
+		"click .viewAndHidChatBtn" : function () {
+			if($(".viewAndHidChatBtn").data("hide")) {
+				$(".chatContainer").animate({height : "250px"}, 150, function () {
+					$(".glyphicon-chevron-up").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+					$(".viewAndHidChatBtn").data("hide", false);
+				});
+			}
+			else {
+				$(".chatContainer").animate({height : "0px"}, 150, function () {
+					$(".glyphicon-chevron-down").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+					$(".viewAndHidChatBtn").data("hide", true);
+				});
+			}
+		},
+		
+		"click .sendBtn" : function () {
+			sendChat();
+		}
 	});
 }

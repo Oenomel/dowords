@@ -5,23 +5,55 @@
     only screen and (max-device-width: 667px),
     only screen and (max-width: 480px) 
 {
-	.listInfo {
-		padding : 30px 0;
+	.practiceWrapper {
+		height : 100%;
+		background-color : #000;
 	}
 
-	.practiceCont {
+	.listInfo {		
+		padding : 10px 0;
+		color : #fff;
+	}
+
+	#practiceCont {
 		width : 100%;
-		padding-bottom : 30px;
+		padding-bottom : 10px;
 		text-align : center;
+	}
+	
+	.item {
+		height : 300px;
+		vertical-align : middle;
+	}
+	
+	.carousel-caption {
+		top : 10%;
+	}
+	
+	.carousel-control .glyphicon-chevron-left,
+	.carousel-control .glyphicon-chevron-right {
+		top : 50%;
+		height : 100%;
+	}
+	
+	.engContainer {
+		font-size : 40px;
+	}
+	
+	.korContainer {
+		font-size : 30px;
 	}
 
 	.wordWrapper {
-		padding-top : 30px;
+		padding-top : 10px;
 		text-align : center;
 	}
 	
 	.studentPracticeViewWrapper {
 		padding-top : 100px;
+		background-color : #000;
+		color : #fff;
+		text-align : center;
 	}
 	
 	#prevBtn, #nextBtn {
@@ -29,20 +61,74 @@
 		margin : 0 10px;
 	}
 	
-	.wordWrapper div {
+	.practiceWrapper div {
 		display : block;
 	}
 
-	#wordContainer {
+	.engCont {
 		font-size : 40px;
 	}
 
-	#meanContainer {
-		margin : 40px 0;
+	.korCont {
+		margin : 20px 0;
 		font-size : 25px;
 	}
 	
 	.hideWord {
 		color : #fff;
+	}
+	
+	
+	.chatWrapper {
+		position : absolute;
+		bottom : 0;
+		width : 100%;
+		z-index : 100;
+	}
+	
+	.viewAndHidChatBtn {
+		padding : 10px 0;
+		width : 100%;
+		text-align : center;
+		background-color : grey;
+		border-top-left-radius : 5px;
+		border-top-right-radius : 5px;
+		cursor : pointer;
+	}
+	
+	.chatContainer {
+		height : 0px;
+		overflow-y : hidden;
+	}
+	
+	.chatContentContainer {
+		height : 210px;
+		overflow-y : auto;
+	}
+	
+	.chatText p {
+		word-break : break-all;
+		color : #fff;
+	}
+	
+	.chatInputContainer {
+		bottom : 0;
+	}
+	
+	.input-group .form-control {
+		width : 80%;
+	}
+	
+	.input-group-addon {
+		font-size : 20px;
+	}
+	
+	.sendBtn {
+		cursor : pointer;
+	}
+	
+	.glyphicon-chevron-up, .glyphicon-chevron-down {
+		color : #fff;
+		font-size : 25px;
 	}
 }

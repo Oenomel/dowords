@@ -1,11 +1,27 @@
 <template name="studentDoPracticeView">
-	<div class="wordWrapper studentPracticeViewWrapper">
-	{{#each contents}}
-		<div id="wordContainer">{{eng}}</div>
-		<div id="meanContainer">{{kor}}</div>
-	{{/each}}	
-	</div>
-	<div id="studentDoPracticeExitBtn" class="listBtnContainer">
-		<div id="exitSelfPracBtn" class="btn btn-lg btn-primary btn-block">끝내기</div>
+	<div class="practiceWrapper">
+		<div class="studentPracticeViewWrapper">
+			{{#each contents}}
+			<div class="engContainer">{{eng}}</div>
+			<div class="korContainer">{{kor}}</div>
+			{{/each}}	
+			<div id="studentDoPracticeExitBtn" class="listBtnContainer">
+				<div id="exitSelfPracBtn" class="btn btn-lg btn-primary btn-block">끝내기</div>
+			</div>
+		</div>
+		<div class="chatWrapper">
+			<div class="viewAndHidChatBtn">
+				<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
+			</div>
+			<div class="chatContainer">
+				<div class="chatContentContainer"></div>
+				<div class="chatInputContainer">
+					<div class="input-group">
+						<input type="text" class="form-control chatInput" aria-describedby="sizing-addon2" placeholder="내용을 입력해 주세요...">
+						<span class="input-group-addon sendBtn">Send</span>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>

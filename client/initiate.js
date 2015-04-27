@@ -7,4 +7,7 @@ if(Meteor.isClient) {
 	});
 	
 	Meteor.subscribe("viewWord");
+	Meteor.subscribe("chat");
+	
+	chatOb = chatObserver();
 }
