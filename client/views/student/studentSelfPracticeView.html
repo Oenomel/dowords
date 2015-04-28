@@ -1,14 +1,14 @@
 
 <template name="studentSelfPracticeView">
-	<div class="wordWrapper">
+<div class="practiceWrapper">
+	<div class="studentPracticeViewWrapper">
 		<div class="listInfo">{{cursor}} / {{length}}</div>
-		{{#each content}}
-		<div id="wordContainer">{{eng}}</div>
-		<div id="meanContainer">{{kor}}</div>
-		{{/each}}
+		<div id="engContainer" class="engContainer"></div>
+		<div id="korContainer" class="korContainer"></div>
 	</div>
 	<div class="listBtnContainer">
 		<div id="exitSelfPracBtn" class="btn btn-lg btn-primary btn-block">끝내기</div>
 		<div class="hiddenBtn btn btn-lg btn-primary btn-block">다음</div>
 	</div>
+</div>	
 </template>

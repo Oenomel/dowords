@@ -5,11 +5,14 @@ if(Meteor.isClient) {
 		$(".hiddenBtn").hide();
 		
 		if(which) {
-			$("#meanContainer").addClass("hideWord");
+			$("#engContainer").addClass("hideWord");
 		}
 		else {
-			$("#wordContainer").addClass("hideWord");
+			$("#korContainer").addClass("hideWord");
 		}
+		
+		$("#engContainer").text(Session.get("wordList")[Session.get("cursor")].eng);
+		$("#korContainer").text(Session.get("wordList")[Session.get("cursor")].kor);
 	}
 	
 	showAnswer = function () {
